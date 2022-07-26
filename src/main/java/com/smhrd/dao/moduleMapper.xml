@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+
+
+<mapper namespace="com.smhrd.dao.moduleDAO">
+	<update id="updateGPS" parameterType="moduleVO">
+		update helmet set hel_loc_lat=#{gps_lat},hel_loc_long=#{gps_long} where hel_number=#{hel_number}
+	</update>
+	
+	<update id="updateLost" parameterType="String">
+		UPDATE helmet SET hel_lost = "Y" WHERE hel_number = #{hel_number}
+	</update>
+</mapper>

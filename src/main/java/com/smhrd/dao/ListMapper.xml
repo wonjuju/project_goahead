@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+
+  <mapper namespace="com.smhrd.dao.MemberDAO" >
+		
+		
+		<select id="getAllList" resultType="Member">
+			select * from member
+		</select>
+		
+		<select id="Ulocation" parameterType="String" resultType="UlocationVO">
+		 	select u.mem_id, u.kick_using, h.hel_number, h.hel_loc_lat, h.hel_loc_long from use_list u, helmet h
+		 	where h.hel_number = u.hel_number and mem_id = #{mem_id} and kick_using = 1
+		</select>
+		
+  		<select id="Hlocation" parameterType="String" resultType="HelmetVO">
+  			select * from helmet where hel_number=#{hel_number}
+  		</select>
+  		
+        </mapper>

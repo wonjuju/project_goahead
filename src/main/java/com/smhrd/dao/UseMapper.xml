@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+        
+<mapper namespace="com.smhrd.dao.UseDAO">
+	<insert id="useInsert" parameterType="UseVO">
+		INSERT INTO use_list(use_number, kick_number, hel_number, mem_id, start_loc_lat, start_loc_long)
+		VALUES (use_seq.NEXTVAL, #{kick_number}, #{hel_number}, #{mem_id}, #{start_loc_lat}, #{start_loc_long})
+	</insert>
+	
+	<select id="accSelectOne" parameterType="String" resultType="AccVO">
+		SELECT * FROM acc_view WHERE hel_number = #{hel_number} and kick_using = 1
+	</select>
+
+	<select id="useList" parameterType="String" resultType="UseVO">
+		SELECT use_number, kick_using, kick_number, hel_number, mem_id, start_time  
+		FROM use_list 
+		where mem_id = #{mem_id} and kick_using = 1
+	</select>
+	
+	<select id="useList2" parameterType="String" resultType="UseVO">
+		SELECT use_number from use_list where hel_number = #{hel_number} and kick_using = 1
+	</select>
+	
+	<update id="stop">
+	    UPDATE use_list set kick_using = 2 
+        where mem_id =#{mem_id} AND kick_using = 1
+	</update>
+	
+	<select id="helSelectOne" parameterType="String" resultType="HelmetVO">
+		SELECT * FROM helmet WHERE hel_number = #{hel_number}
+	</select>
+
+	<update id="stopGPS" parameterType="UseVO">
+		UPDATE use_list SET end_loc_lat = #{end_loc_lat}, end_loc_long = #{end_loc_long}, end_time = TO_CHAR(SYSDATE, 'YYYY-MM-DD, HH24:MI:SS')
+		WHERE use_number =  #{use_number}
+	</update>
+	
+	<insert id="accList" parameterType="AccVO">
+		insert into acc_list(acc_num, use_number, acc_loc_lat, acc_loc_long) values(acc_seq.NEXTVAL, #{use_number}, #{acc_loc_lat}, #{acc_loc_long})
+	</insert>
+	
+	<select id="usinglist" resultType="UseVO" parameterType="String">
+		select * from used_list where kick_using = 2 and mem_id = #{mem_id}
+	</select>
+	
+	<select id="accListView" parameterType="int" resultType="AccVO">
+		SELECT * FROM acc_list WHERE use_number = #{use_number}
+	</select>
+	
+
+</mapper> 
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+      <typeAlias type="com.smhrd.domain.Member" alias="Member"/>
+      <typeAlias type="com.smhrd.domain.HelmetVO" alias="HelmetVO"/>
+	  <typeAlias type="com.smhrd.domain.UseVO" alias="UseVO"/>
+	  <typeAlias type="com.smhrd.domain.AccVO" alias="AccVO"/>
+	  <typeAlias type="com.smhrd.domain.UlocationVO" alias="UlocationVO"/>
+	   <typeAlias type="com.smhrd.domain.moduleVO" alias="moduleVO"/>
+   </typeAliases>
+
+   <environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC"/>
+         <dataSource type="POOLED">
+            <property name="driver"  value="oracle.jdbc.driver.OracleDriver"/>      
+            <property name="url" value="jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe"/>         
+            <property name="username" value="cgi_1_0516_4"/>         
+            <property name="password" value="smhrd4"/>         
+         </dataSource>
+      </environment>
+   </environments>
+
+   <mappers>
+      <mapper resource="com/smhrd/dao/MemberMapper.xml"/>
+      <mapper resource="com/smhrd/dao/ListMapper.xml"/>
+      <mapper resource="com/smhrd/dao/UseMapper.xml"/>
+      <mapper resource="com/smhrd/dao/moduleMapper.xml"/>
+   </mappers>
+
+
+
+</configuration>
